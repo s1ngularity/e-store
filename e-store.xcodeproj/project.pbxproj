@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B8B40E21EB749B000C3650D /* product.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0B8B40E01EB749B000C3650D /* product.cpp */; };
 		0BC0ABB01EAA9DF60031DD9A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0ABAF1EAA9DF60031DD9A /* main.cpp */; };
+		0BC0ABB81EAA9E1A0031DD9A /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0ABB61EAA9E1A0031DD9A /* system.cpp */; };
+		0BC0ABBE1EAA9E620031DD9A /* systemUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0ABBC1EAA9E620031DD9A /* systemUI.cpp */; };
+		0BC0ABC61EAA9F5E0031DD9A /* loginController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0ABC41EAA9F5E0031DD9A /* loginController.cpp */; };
+		0BC0ABD01EAAA16C0031DD9A /* warehouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0ABCE1EAAA16C0031DD9A /* warehouse.cpp */; };
+		0BC0ABD31EAAA1A50031DD9A /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0ABD11EAAA1A50031DD9A /* user.cpp */; };
+		0BC0ABD61EAAA1FB0031DD9A /* cartController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BC0ABD41EAAA1FB0031DD9A /* cartController.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +30,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B8B40E01EB749B000C3650D /* product.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = product.cpp; sourceTree = "<group>"; };
+		0B8B40E11EB749B000C3650D /* product.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = product.hpp; sourceTree = "<group>"; };
 		0BC0ABAC1EAA9DF60031DD9A /* e-store */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "e-store"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BC0ABAF1EAA9DF60031DD9A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		0BC0ABB61EAA9E1A0031DD9A /* system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = system.cpp; path = ../system.cpp; sourceTree = "<group>"; };
+		0BC0ABB71EAA9E1A0031DD9A /* system.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = system.hpp; path = ../system.hpp; sourceTree = "<group>"; };
+		0BC0ABBC1EAA9E620031DD9A /* systemUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = systemUI.cpp; sourceTree = "<group>"; };
+		0BC0ABBD1EAA9E620031DD9A /* systemUI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = systemUI.hpp; sourceTree = "<group>"; };
+		0BC0ABC41EAA9F5E0031DD9A /* loginController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loginController.cpp; sourceTree = "<group>"; };
+		0BC0ABC51EAA9F5E0031DD9A /* loginController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = loginController.hpp; sourceTree = "<group>"; };
+		0BC0ABCE1EAAA16C0031DD9A /* warehouse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = warehouse.cpp; path = ../warehouse.cpp; sourceTree = "<group>"; };
+		0BC0ABCF1EAAA16C0031DD9A /* warehouse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = warehouse.hpp; path = ../warehouse.hpp; sourceTree = "<group>"; };
+		0BC0ABD11EAAA1A50031DD9A /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = user.cpp; path = ../user.cpp; sourceTree = "<group>"; };
+		0BC0ABD21EAAA1A50031DD9A /* user.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = user.hpp; path = ../user.hpp; sourceTree = "<group>"; };
+		0BC0ABD41EAAA1FB0031DD9A /* cartController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cartController.cpp; sourceTree = "<group>"; };
+		0BC0ABD51EAAA1FB0031DD9A /* cartController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cartController.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +78,87 @@
 		0BC0ABAE1EAA9DF60031DD9A /* e-store */ = {
 			isa = PBXGroup;
 			children = (
-				0BC0ABAF1EAA9DF60031DD9A /* main.cpp */,
+				0BC0ABC81EAA9F7C0031DD9A /* include */,
+				0BC0ABC71EAA9F6E0031DD9A /* src */,
 			);
 			path = "e-store";
+			sourceTree = "<group>";
+		};
+		0BC0ABC21EAA9EC30031DD9A /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				0BC0ABD41EAAA1FB0031DD9A /* cartController.cpp */,
+				0BC0ABC41EAA9F5E0031DD9A /* loginController.cpp */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		0BC0ABC31EAA9EF20031DD9A /* interface */ = {
+			isa = PBXGroup;
+			children = (
+				0BC0ABBC1EAA9E620031DD9A /* systemUI.cpp */,
+			);
+			name = interface;
+			sourceTree = "<group>";
+		};
+		0BC0ABC71EAA9F6E0031DD9A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0BC0ABAF1EAA9DF60031DD9A /* main.cpp */,
+				0BC0ABCD1EAA9FEB0031DD9A /* model */,
+				0BC0ABC31EAA9EF20031DD9A /* interface */,
+				0BC0ABC21EAA9EC30031DD9A /* controller */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		0BC0ABC81EAA9F7C0031DD9A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				0BC0ABCC1EAA9FE30031DD9A /* model */,
+				0BC0ABCA1EAA9FA50031DD9A /* interface */,
+				0BC0ABCB1EAA9FAB0031DD9A /* controller */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		0BC0ABCA1EAA9FA50031DD9A /* interface */ = {
+			isa = PBXGroup;
+			children = (
+				0BC0ABBD1EAA9E620031DD9A /* systemUI.hpp */,
+			);
+			name = interface;
+			sourceTree = "<group>";
+		};
+		0BC0ABCB1EAA9FAB0031DD9A /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				0BC0ABD51EAAA1FB0031DD9A /* cartController.hpp */,
+				0BC0ABC51EAA9F5E0031DD9A /* loginController.hpp */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		0BC0ABCC1EAA9FE30031DD9A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0B8B40E11EB749B000C3650D /* product.hpp */,
+				0BC0ABD21EAAA1A50031DD9A /* user.hpp */,
+				0BC0ABCF1EAAA16C0031DD9A /* warehouse.hpp */,
+				0BC0ABB71EAA9E1A0031DD9A /* system.hpp */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		0BC0ABCD1EAA9FEB0031DD9A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0B8B40E01EB749B000C3650D /* product.cpp */,
+				0BC0ABD11EAAA1A50031DD9A /* user.cpp */,
+				0BC0ABCE1EAAA16C0031DD9A /* warehouse.cpp */,
+				0BC0ABB61EAA9E1A0031DD9A /* system.cpp */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +218,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BC0ABD31EAAA1A50031DD9A /* user.cpp in Sources */,
+				0BC0ABD61EAAA1FB0031DD9A /* cartController.cpp in Sources */,
+				0BC0ABC61EAA9F5E0031DD9A /* loginController.cpp in Sources */,
+				0BC0ABBE1EAA9E620031DD9A /* systemUI.cpp in Sources */,
+				0BC0ABB81EAA9E1A0031DD9A /* system.cpp in Sources */,
+				0BC0ABD01EAAA16C0031DD9A /* warehouse.cpp in Sources */,
 				0BC0ABB01EAA9DF60031DD9A /* main.cpp in Sources */,
+				0B8B40E21EB749B000C3650D /* product.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +354,7 @@
 				0BC0ABB51EAA9DF60031DD9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
