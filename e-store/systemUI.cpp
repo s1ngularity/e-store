@@ -51,7 +51,7 @@ bool UI::logIn (User &usr) {
         return true;
     }
     else {
-        std::cout << "\n[!] Login procedure failure:\n no such login.\n Try again.\n\n\n\n";
+        std::cout << "\n<!> Login procedure failure:\n no such login.\n Try again.\n\n\n\n";
         return false;
     }
 }

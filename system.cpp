@@ -38,8 +38,8 @@ void System::start(User user) { // a function that keeps'dat'll up'n'runnin'
     startExec();
     bool exec_result;
     while (exec_flag) {
-        ui.alert("[ Current cart: " + currentCart.getUserName() + "]\n");
-        if (currentCart.getUserName() == "none") { ui.alert("[! Choose cart !]\n"); }
+        ui.alert("[ Current cart: " + currentCart.getUserName() + " ]\n\n");
+        if (currentCart.getUserName() == "none") { ui.alert("<!> Choose cart \n\n"); }
         ui.alert("Commands: \n");
         int command = ui.prompt_list(usrPtr->getCommandList());
         //ui.alert("you chose: " + std::to_string(command) + "\n");

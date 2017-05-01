@@ -9,7 +9,7 @@
 #include "cartController.hpp"
 #include "systemUI.hpp"
 
-std::string CART_NOT_CREATED_ERR = "<!> Cart not created. Create cart first.\n";
+std::string CART_NOT_CREATED_ERR = "<!> Cart not created. Create cart first.\n\n";
 
 void Cart::add_handler() {
     UI ui;
@@ -42,9 +42,11 @@ void Cart::enlist() {
         ui.alert(CART_NOT_CREATED_ERR);
         return;
     }
+    ui.alert("\n-------------CART:------------\n");
     for (auto prod : this->items) {
         std::cout << prod.getName() << " : " << prod.getPrice() << "\n";
     }
+    ui.alert("------------------------------\n");
 }
 
 void Cart::print_total() {
@@ -53,7 +55,9 @@ void Cart::print_total() {
         ui.alert(CART_NOT_CREATED_ERR);
         return;
     }
+    ui.alert("\n--PRICE:--------\n");
     ui.alert(std::to_string(this->total()) + "\n");
+    ui.alert("----------------\n");
 }
 
 double Cart::total() {

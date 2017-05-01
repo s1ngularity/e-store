@@ -27,7 +27,7 @@ std::vector<std::string> Operator::command_list =
         "1) Add to cart\n",
         "2) Remove from cart\n",
         "3) Print cart\n",
-        "4) Total cost\n",
+        "4) Print cheque\n", /*"4) Total cost\n", */
         "5) Create new user's cart\n",
         "6) Exit\n"
     };
