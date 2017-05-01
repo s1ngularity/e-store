@@ -11,11 +11,10 @@
 
 #include "user.hpp"
 
+
 class LoginController {
 public:
     bool get(User &usr); // to be re-written
 };
-
-
 
 #endif /* loginController_hpp */
