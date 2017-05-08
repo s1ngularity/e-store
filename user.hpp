@@ -33,7 +33,7 @@ public:
     User *identify();
     virtual std::string getInfo() { return "Unidentified type.\n"; }
     virtual std::vector<std::string> getCommandList() const;
-    virtual bool execute(int, Cart&);
+    virtual bool execute(int, Cart&, Warehouse&);
 };
 
 
@@ -52,7 +52,7 @@ public:
     }
     virtual std::vector<std::string> getCommandList() const override;
     virtual std::string getInfo() override { return instructions; }
-    virtual bool execute(int, Cart&) override;
+    virtual bool execute(int, Cart&, Warehouse&) override;
 };
 
 
@@ -69,7 +69,7 @@ public:
     }
     virtual std::vector<std::string> getCommandList() const override;
     virtual std::string getInfo() override { return instructions; }
-    virtual bool execute(int, Cart&) override;
+    virtual bool execute(int, Cart&, Warehouse&) override;
 };
 
 

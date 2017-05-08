@@ -15,3 +15,7 @@ void Warehouse::add(Product p) {
 const std::vector<Product>& Warehouse::getItems() const {
     return products;
 }
+
+void Warehouse::remove(int index) {
+    products.erase(products.begin() + index + 1);
+}

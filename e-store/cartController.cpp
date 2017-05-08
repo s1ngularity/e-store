@@ -12,21 +12,31 @@
 
 std::string CART_NOT_CREATED_ERR = "<!> Cart not created. Create cart first.\n\n";
 
-void Cart::add_handler() {
+
+std::vector<Product> Cart::getItems() {
+    return this->items;
+}
+
+void Cart::remove(int index) {
+    this->items.erase(this->items.begin() + index - 1);
+}
+
+
+void Cart::add_handler(const Warehouse& warehouse) {
     UI ui;
-    Warehouse warehouse;
     if (this->getId() == -1) {
         ui.alert(CART_NOT_CREATED_ERR);
         return;
     }
-    warehouse.add(Product("ffxv", "games", 100.99));
-    warehouse.add(Product("nier", "games", 99.99));
+    
+    
     ui.alert("1) Show all items availible on the warehouse\n");
     int ans = ui.prompt("2) Search by name\n");
     switch(ans) {
         case 1:
             std::cout << "Items:\n";
             ui.alert_items(warehouse.getItems());
+            items.push_back(warehouse[ui.prompt("Item number:\b\n") - 1]);
             break;
         case 2:
             
@@ -35,12 +45,6 @@ void Cart::add_handler() {
             std::cout << "Wrong way\n";
             
     }
-    //TESTING:
-    /*Product t1("Tali Zorah figure (ME series)", "figures", 200);
-    Product t2("Nier:automata digital edition", "c-games", 120);
-    items.push_back(t1);
-    items.push_back(t2);
-     */
     
 }
 
@@ -50,7 +54,14 @@ void Cart::remove_handler() {
         ui.alert(CART_NOT_CREATED_ERR);
         return;
     }
-    ui.alert("Usage: enter product name and id (\"name id\")\n>>>");
+    if (this->items.size() == 0) {
+        ui.alert("Cart is already empty!\n");
+        return;
+    }
+    
+    ui.alert("\nItems in the cart:\n");
+    ui.alert_items(this->getItems());
+    remove(ui.prompt("Choose product to delete:\n"));
 
 }
 
@@ -64,6 +75,8 @@ void Cart::enlist() {
     for (auto prod : this->items) {
         std::cout << prod.getName() << " : " << prod.getPrice() << "\n";
     }
+    ui.alert("\n--PRICE:--------\n");
+    ui.alert(std::to_string(this->total()) + "\n");
     ui.alert("------------------------------\n");
 }
 

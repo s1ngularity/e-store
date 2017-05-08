@@ -12,6 +12,7 @@
 #include <iostream>
 #include <vector>
 #include "product.hpp"
+#include "warehouse.hpp"
 
 
 class Cart {
@@ -25,12 +26,14 @@ public:
     int getId() { return id; }
     void setId(int t_id) { id = t_id; }
     void setUserName(std::string t_userName) { userName = t_userName; }
-    void add_handler();
-    void add(Product);
+    void add_handler(const Warehouse &);
+    //void add(Product);
     void remove_handler();
-    void remove(Product);
+    //void remove(Product);
     void enlist();
     void print_total();
     double total();
+    std::vector<Product> getItems();
+    void remove(int index);
 };
 #endif /* cartController_hpp */

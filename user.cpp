@@ -73,12 +73,12 @@ std::vector<std::string> Operator::getCommandList() const {
     return Operator::command_list;
 }
 
-bool User::execute(int cmd, Cart& cart) {
+bool User::execute(int cmd, Cart& cart, Warehouse& warehouse) {
     std::cout << "\nYOU. MESSED. UP. WITH. UsrPointer [!!!]\n";
     return false;
 }
 
-bool Admin::execute(int cmd, Cart& cart) {
+bool Admin::execute(int cmd, Cart& cart, Warehouse& warehouse) {
     bool result = true;
     System system("decision core");
     switch(cmd) {
@@ -96,6 +96,7 @@ bool Admin::execute(int cmd, Cart& cart) {
             break;
         case 5:
             //Remove product
+            //warehouse.remove(ui.prompt("Choose product to delete\n"));
             break;
         case 6:
             //Add new discount
@@ -115,13 +116,13 @@ bool Admin::execute(int cmd, Cart& cart) {
     return result;
 }
 
-bool Operator::execute(int cmd, Cart& cart) {
+bool Operator::execute(int cmd, Cart& cart, Warehouse& warehouse) {
     System system("decision core");
     bool result = true;
     switch(cmd) {
         case 1:
             //Add to cart
-            cart.add_handler();
+            cart.add_handler(warehouse);
             //ui.addToCart(); // -> ask for parameters -> system.addToCart(parameters)
             break;
         case 2:

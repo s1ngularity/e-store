@@ -20,6 +20,9 @@ private:
 public:
     void add(Product);
     const std::vector<Product>& getItems() const;
+    void remove(int index);
+    const Product get(int index) const { return products[index]; }
+    const Product operator[](int index) const { return products[index]; }
 };
 
 #endif /* warehouse_hpp */
