@@ -35,5 +35,6 @@ public:
     double total();
     std::vector<Product> getItems();
     void remove(int index);
+    void newCart();
 };
 #endif /* cartController_hpp */

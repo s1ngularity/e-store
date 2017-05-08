@@ -135,8 +135,7 @@ bool Operator::execute(int cmd, Cart& cart, Warehouse& warehouse) {
             cart.print_total();// Total cost
             break;
         case 5:
-            cart.setUserName("test");
-            cart.setId(1); // Create new cart
+            cart.newCart();
             break;
         case 6:
             system.stopExec(); // exit

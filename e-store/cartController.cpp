@@ -99,3 +99,11 @@ double Cart::total() {
     return sum;
 }
 
+void Cart::newCart() {
+    UI ui;
+    ui.alert("Select user name:\n");
+    std::cin >> this->userName;
+    setId(1); // Create new cart
+    items.erase(items.begin(), items.end());
+}
+
