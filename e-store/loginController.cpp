@@ -14,11 +14,19 @@ bool LoginController::get(User &usr) { // BAD CODE ALERT!
     std::string name;
     std::cin >> name;
     
+    // FIND MISTAKE HERE!
     std::string fname;
-    std::ifstream ifs;
-    ifs.open("/test.txt");
-    ifs >> fname;
-    ifs.close();
+    std::ifstream infile;
+    std::ofstream ofile;
+    ofile.open("/Sec.data");
+    ofile << "Boo\n";
+    ofile.close();
+    infile.open("/Sec.data");
+    while (infile >> fname)
+    {
+        std::cout << "read: " << fname << ".\n";
+    }
+    infile.close();
     std::cout << "NAME read from file:: " << fname << "\n";
 
     

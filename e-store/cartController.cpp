@@ -29,22 +29,26 @@ void Cart::add_handler(const Warehouse& warehouse) {
         return;
     }
     
+//    TEST FEATURES: ( FOR FUTURE WORK <!> )
+//    ui.alert("1) Show all items availible on the warehouse\n");
+//    int ans = ui.prompt("2) Search by name\n");
+//    switch(ans) {
+//        case 1:
+//            std::cout << "Items:\n";
+//            ui.alert_items(warehouse.getItems());
+//            items.push_back(warehouse[ui.prompt("Item number:\b\n") - 1]);
+//            break;
+//        case 2:
+//            
+//            break;
+//        default:
+//            std::cout << "Wrong way\n";
+//            
+//    }
     
-    ui.alert("1) Show all items availible on the warehouse\n");
-    int ans = ui.prompt("2) Search by name\n");
-    switch(ans) {
-        case 1:
-            std::cout << "Items:\n";
-            ui.alert_items(warehouse.getItems());
-            items.push_back(warehouse[ui.prompt("Item number:\b\n") - 1]);
-            break;
-        case 2:
-            
-            break;
-        default:
-            std::cout << "Wrong way\n";
-            
-    }
+    std::cout << "Items:\n";
+    ui.alert_items(warehouse.getItems());
+    items.push_back(warehouse[ui.prompt("Item number:\b\n") - 1]);
     
 }
 

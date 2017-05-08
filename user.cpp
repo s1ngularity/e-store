@@ -123,7 +123,6 @@ bool Operator::execute(int cmd, Cart& cart, Warehouse& warehouse) {
         case 1:
             //Add to cart
             cart.add_handler(warehouse);
-            //ui.addToCart(); // -> ask for parameters -> system.addToCart(parameters)
             break;
         case 2:
             cart.remove_handler(); //Remove from cart
