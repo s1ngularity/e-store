@@ -14,6 +14,7 @@
 #include <cstdlib>
 #include "cartController.hpp"
 #include "product.hpp"
+#include "warehouse.hpp"
 
 bool System::exec_flag = true;
 std::string System::storeName() const { return "Store: " + name; }
@@ -29,8 +30,15 @@ User System::logIn() {
 void System::start(User user) { // a function that keeps'dat'll up'n'runnin'
     UI ui;
     User usr;
+    Warehouse warehouse;
     std::vector<Cart> store;
     Cart currentCart;
+    
+    warehouse.add(Product("ffxv", "games", 100.99));
+    warehouse.add(Product("nier", "games", 99.99));
+    warehouse.add(Product("Tali Zorah figure (ME series)", "figures", 200));
+    warehouse.add(Product("Nier:automata digital edition", "c-games", 120));
+
 
     std::unique_ptr<User> usrPtr(user.identify());
     std::cout << "\n" << usrPtr->getInfo();
@@ -44,7 +52,7 @@ void System::start(User user) { // a function that keeps'dat'll up'n'runnin'
         int command = ui.prompt_list(usrPtr->getCommandList());
         //ui.alert("you chose: " + std::to_string(command) + "\n");
         //ui.alert(std::to_string(x));
-        exec_result = usrPtr->execute(command, currentCart);
+        exec_result = usrPtr->execute(command, currentCart, warehouse);
     }
     
     
