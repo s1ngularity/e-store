@@ -23,6 +23,15 @@ void UI::alert(std::string msg) const {
     std::cout << msg;
 }
 
+
+void UI::alert_items(std::vector<Product> vec) {
+    int i = 1;
+    for (auto iter = vec.begin(); iter != vec.end(); iter++) {
+        alert(std::to_string(i++) + ") " + iter->about() + "\n");
+    }
+
+}
+
 int UI::prompt_list(std::vector<std::string> vec) {
     if (vec.empty()) {
         return -1;

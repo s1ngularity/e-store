@@ -19,6 +19,8 @@ public:
     void init_workspace(const User& usr);
     int prompt(std::string) const;
     void alert(std::string) const;
+    //template <typename T>
+    void alert_items(std::vector<Product> vec);
     int prompt_list(std::vector<std::string> vec);
 };
 

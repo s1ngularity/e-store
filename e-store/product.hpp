@@ -27,6 +27,7 @@ public:
     int getId() { return id; }
     std::string getName() { return name; }
     std::string getCategory() { return category; }
+    std::string about() { return name + " | " + category + " | " + std::to_string(price); }
     
 };
 

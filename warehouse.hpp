@@ -9,6 +9,17 @@
 #ifndef warehouse_hpp
 #define warehouse_hpp
 
-#include <stdio.h>
+#include <iostream>
+#include <vector>
+#include "product.hpp"
+
+class Warehouse {
+private:
+    std::vector<Product> products;
+    
+public:
+    void add(Product);
+    const std::vector<Product>& getItems() const;
+};
 
 #endif /* warehouse_hpp */
