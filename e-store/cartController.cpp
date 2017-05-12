@@ -48,7 +48,13 @@ void Cart::add_handler(const Warehouse& warehouse) {
     
     std::cout << "Items:\n";
     ui.alert_items(warehouse.getItems());
-    items.push_back(warehouse[ui.prompt("Item number:\b\n") - 1]);
+    int e_id = ui.prompt("Item number:\b\n");
+    if ((e_id > 0) && (e_id <= warehouse.getItems().size())) {
+        items.push_back(warehouse[e_id - 1]);
+    }
+    else {
+        ui.alert("<!> Wrong product number - no such product\n");
+    }
     
 }
 
@@ -65,7 +71,13 @@ void Cart::remove_handler() {
     
     ui.alert("\nItems in the cart:\n");
     ui.alert_items(this->getItems());
-    remove(ui.prompt("Choose product to delete:\n"));
+    int e_id = ui.prompt("Choose product number to delete:\n");
+    if ((e_id > 0) && (e_id <= items.size())) {
+        remove(e_id);
+    }
+    else {
+        ui.alert("<!> Wrong product number - no such product\n");
+    }
 
 }
 
