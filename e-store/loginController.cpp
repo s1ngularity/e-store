@@ -9,6 +9,7 @@
 #include "loginController.hpp"
 #include "user.hpp"
 #include "systemUI.hpp"
+#include "fileHandler.hpp"
 #include <fstream>
 #include <cctype>
 #include <algorithm>
@@ -17,12 +18,10 @@
 std::string filename = "b.txt";
 
 void LoginController::add(const User &usr, std::string password) {
-    std::ofstream ofile;
-    ofile.open(filename, std::ios_base::app);
+    FileHandler filehandler(filename);
     std::string usr_data = "";
     usr_data = usr.getName() + " " + password + " " + ((usr.getAccessLvl() == ADMIN) ? "admin" : "operator") + "\n";
-    ofile << usr_data;
-    ofile.close();
+    filehandler.appendToFile(usr_data);
 }
 
 void LoginController::del(std::string name) {
