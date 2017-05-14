@@ -15,6 +15,7 @@
 class LoginController {
 public:
     bool get(User &usr); // to be re-written
+    bool add(const User &usr); // adding user.
 };
 
 #endif /* loginController_hpp */
