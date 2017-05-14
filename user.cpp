@@ -15,7 +15,7 @@ std::vector<std::string> User::command_list = {"WARNING: YOU MESSED UP WITH USER
 std::vector<std::string> Admin::command_list =
     {
         "1) Add user\n",
-        "2) Delete user\n",
+        "2) Delete user [beta]\n",
         "3) Add product\n",
         "4) Edit product\n",
         "5) Remove product\n"
