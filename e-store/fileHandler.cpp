@@ -15,11 +15,11 @@ void FileHandler::setDestFile(std::string file) {
 }
 
 void FileHandler::appendToFile(std::string line) {
-    if (filename == "none") {
+    if (this->filename == "none") {
         throw FileHandlerException("no file chosen!");
     }
     std::ofstream ofile;
-    ofile.open(filename, std::ios_base::app);
+    ofile.open(this->filename, std::ios_base::app);
     ofile << line;
     ofile.close();
 }

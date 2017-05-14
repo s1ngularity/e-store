@@ -38,10 +38,10 @@ bool LoginController::get(User &usr) {
     std::string password;
     std::cin >> password;
     
-    std::ofstream ofile("b.txt");
-    ofile << "AVasK 7997 admin\n";
-    ofile << "gman 0000 operator\n";
-    ofile.close();
+//    std::ofstream ofile("b.txt");
+//    ofile << "AVasK 7997 admin\n";
+//    ofile << "gman 0000 operator\n";
+//    ofile.close();
     
     std::string line;
     std::ifstream infile(filename);
