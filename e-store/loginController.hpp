@@ -10,6 +10,7 @@
 #define loginController_hpp
 
 #include "user.hpp"
+#include "parser.hpp"
 
 
 class LoginController {

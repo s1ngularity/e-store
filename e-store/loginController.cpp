@@ -14,26 +14,9 @@
 #include <algorithm>
 #include <string>
 
-std::string getAttr(int n, std::string line) {
-    const char SEPCHR = ' ';
-    n--;
-    std::string parsed = "";
-    for (int i = 0; i < line.size(); i++) {
-        if (n < 0) {
-            break;
-        }
-        if (line[i] == SEPCHR) {
-            n--;
-        }
-        else if (n == 0) {
-            parsed += line[i];
-        }
-    }
-    return parsed;
-}
-
-
 bool LoginController::get(User &usr) {
+    Parser parser;
+    parser.setSepChar(' ');
     
     std::string name;
     std::cin >> name;
@@ -41,10 +24,9 @@ bool LoginController::get(User &usr) {
     std::string password;
     std::cin >> password;
     
-//    std::ofstream ofile("b.txt");
-//    ofile << "AVasK 7997 admin\n";
-//    ofile << "gman 0000 operator";
-//    ofile.close();
+    //std::ofstream ofile("b.txt");
+    //ofile << "AVasK";
+    //ofile.close();
     
     std::string filename = "b.txt";
     std::string line;
@@ -52,11 +34,11 @@ bool LoginController::get(User &usr) {
     bool match = false;
     auto access_lvl = OPERATOR;
     while (std::getline(infile, line)) {
-        std::cout << line << " <-line \n";
+        //        std::cout << line << " <-line \n";
         std::string fname, fpass, fpost;
-        fname = getAttr(1, line);
-        fpass = getAttr(2, line);
-        fpost = getAttr(3, line);
+        fname = parser.getAttr(1, line);
+        fpass = parser.getAttr(2, line);
+        fpost = parser.getAttr(3, line);
         std::transform(fpost.begin(), fpost.end(), fpost.begin(), ::tolower); //converting to lower-case
         
         // DEBUG INFO : ______________________________________
@@ -77,9 +59,5 @@ bool LoginController::get(User &usr) {
     infile.close();
     
     if (match) { usr.setName(name); usr.setAccessLvl(access_lvl); return true; }
-    //if (name == "gman") { usr.setName(name); usr.setAccessLvl(OPERATOR); return true; }
-    //if (name != "AVasK") { return false; }
     return false;
 }
-
-
