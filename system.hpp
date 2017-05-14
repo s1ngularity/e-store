@@ -23,6 +23,7 @@ public:
     void start(User);
     void startExec() { exec_flag = true; }
     void stopExec() { exec_flag = false; }
+    void addUser();
 };
 
 #endif /* system_hpp */

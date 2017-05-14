@@ -14,6 +14,21 @@
 #include <algorithm>
 #include <string>
 
+std::string filename = "b.txt";
+
+void LoginController::add(const User &usr, std::string password) {
+    std::ofstream ofile;
+    ofile.open(filename, std::ios_base::app);
+    std::string usr_data = "";
+    usr_data = usr.getName() + " " + password + " " + ((usr.getAccessLvl() == ADMIN) ? "admin" : "operator") + "\n";
+    ofile << usr_data;
+    ofile.close();
+}
+
+void LoginController::del(std::string name) {
+    
+}
+
 bool LoginController::get(User &usr) {
     Parser parser;
     parser.setSepChar(' ');
@@ -24,11 +39,11 @@ bool LoginController::get(User &usr) {
     std::string password;
     std::cin >> password;
     
-    //std::ofstream ofile("b.txt");
-    //ofile << "AVasK";
-    //ofile.close();
+    std::ofstream ofile("b.txt");
+    ofile << "AVasK 7997 admin\n";
+    ofile << "gman 0000 operator\n";
+    ofile.close();
     
-    std::string filename = "b.txt";
     std::string line;
     std::ifstream infile(filename);
     bool match = false;

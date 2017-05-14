@@ -23,6 +23,7 @@ private:
     static std::vector<std::string> command_list;
 public:
     User() : name("none"), id(-1) {}
+    User(std::string t_name) : name(t_name), id(1) {}
     User(std::string t_name, int t_id) : name(t_name), id(t_id) {}
     int getId() const;
     int getAccessLvl() const;

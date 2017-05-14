@@ -8,6 +8,7 @@
 
 #include "user.hpp"
 #include "system.hpp"
+#include "loginController.hpp"
 
 std::vector<std::string> User::command_list = {"WARNING: YOU MESSED UP WITH USER POINTER.\n" };
 
@@ -83,7 +84,7 @@ bool Admin::execute(int cmd, Cart& cart, Warehouse& warehouse) {
     System system("decision core");
     switch(cmd) {
         case 1:
-            //Add user
+            system.addUser(); //Add user
             break;
         case 2:
             //Delete user
@@ -123,6 +124,7 @@ bool Operator::execute(int cmd, Cart& cart, Warehouse& warehouse) {
         case 1:
             //Add to cart
             cart.add_handler(warehouse);
+
             break;
         case 2:
             cart.remove_handler(); //Remove from cart
