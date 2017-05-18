@@ -43,29 +43,19 @@ User *LoginController::get() {
     name = ui.dialogue("Enter your name: ");
     password = ui.dialogue("\npassword: ");
     
+    if (!fh.fileExists(filename)) {
+        ui.alert("User data not found or corrupted. Creating new.\nTemporary login: admin , pass: admin\n");
+        fh.rewriteFile("admin admin admin\n");
+    }
     
-//    std::ofstream ofile("b.txt");
-//    ofile << "AVasK 7997 admin\n";
-//    ofile << "gman 0000 operator\n";
-//    ofile.close();
-    
-    //std::string line;
-    //std::ifstream infile(filename);
     bool match = false;
     auto access_lvl = OPERATOR;
-    //while (std::getline(infile, line)) {
-        //        std::cout << line << " <-line \n";
     for (std::string line : fh.getLines()) {
         std::string fname, fpass, fpost;
         fname = parser.getAttr(1, line);
         fpass = parser.getAttr(2, line);
         fpost = parser.getAttr(3, line);
         std::transform(fpost.begin(), fpost.end(), fpost.begin(), ::tolower); //converting to lower-case
-        
-        // DEBUG INFO : ______________________________________
-        //        std::cout << "\"" << fname << "\" - name\n";
-        //        std::cout << "\"" << fpass << "\" - pass\n";
-        //        std::cout << "\"" << fpost << "\" - post\n";
         
         if ((fname == name) && (fpass == password)) {
             match = true;
@@ -77,7 +67,6 @@ User *LoginController::get() {
                 match = false;
         }
     }
-    //infile.close();
     
     if (match) { usrptr->setName(name); usrptr->setAccessLvl(access_lvl); return usrptr; }
     return nullptr;

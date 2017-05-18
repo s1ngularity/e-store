@@ -34,3 +34,19 @@ std::vector<std::string> FileHandler::getLines() {
     }
     return lines;
 }
+
+void FileHandler::rewriteFile(std::string line) {
+    std::ofstream ofile(filename);
+    ofile << line;
+    ofile.close();
+}
+
+bool FileHandler::fileExists(std::string fname) {
+    if (std::ifstream(fname))
+    {
+        //File exists
+        return true;
+    }
+    // File doesn't exist
+    return false;
+}

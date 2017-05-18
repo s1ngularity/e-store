@@ -18,7 +18,9 @@ public:
     FileHandler() {}
     FileHandler(std::string file) : filename(file) {}
     void appendToFile(std::string line);
+    void rewriteFile(std::string line);
     void setDestFile(std::string file);
+    bool fileExists(std::string filename);
     std::vector<std::string> getLines();
 };
 
