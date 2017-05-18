@@ -14,23 +14,23 @@ std::vector<std::string> User::command_list = {"WARNING: YOU MESSED UP WITH USER
 
 std::vector<std::string> Admin::command_list =
     {
-        "1) Add user\n",
-        "2) Delete user [beta]\n",
+        "1) Info\n",
+        "2) Add user\n",
         "3) Add product\n",
-        "4) Edit product\n",
-        "5) Remove product\n"
-        "6) Add new discount\n",
-        "7) Remove discount\n",
-        "8) Exit\n"
+        "4) Remove product\n"
+        "5) Add new discount\n",
+        "6) Remove discount\n",
+        "7) Exit\n"
     };
 std::vector<std::string> Operator::command_list =
     {
-        "1) Add to cart\n",
-        "2) Remove from cart\n",
-        "3) Print cart\n",
-        "4) Print cheque\n", /*"4) Total cost\n", */
-        "5) Create new user's cart\n",
-        "6) Exit\n"
+        "1) Info\n",
+        "2) Add to cart\n",
+        "3) Remove from cart\n",
+        "4) Print cart\n",
+        "4) Total cost\n",
+        "6) Create new user's cart\n",
+        "7) Exit\n"
     };
 
 int User::getId() const {
@@ -84,28 +84,25 @@ bool Admin::execute(int cmd, Cart& cart, Warehouse& warehouse) {
     System system("decision core");
     switch(cmd) {
         case 1:
-            system.addUser(); //Add user
+            std::cout << getInfo(); //Get info
             break;
         case 2:
-            //Delete user
+            system.addUser(); // Add user
             break;
         case 3:
             //Add product
             break;
         case 4:
-            // Edit product
-            break;
-        case 5:
             //Remove product
             //warehouse.remove(ui.prompt("Choose product to delete\n"));
             break;
-        case 6:
+        case 5:
             //Add new discount
             break;
-        case 7:
+        case 6:
             //Remove discount
             break;
-        case 8:
+        case 7:
             system.stopExec(); // exit
             break;
         default:
@@ -122,23 +119,25 @@ bool Operator::execute(int cmd, Cart& cart, Warehouse& warehouse) {
     bool result = true;
     switch(cmd) {
         case 1:
-            //Add to cart
-            cart.add_handler(warehouse);
-
+            std::cout << getInfo();
             break;
         case 2:
-            cart.remove_handler(); //Remove from cart
+            //Add to cart
+            cart.add_handler(warehouse);
             break;
         case 3:
-            cart.enlist(); //Enlist total
+            cart.remove_handler(); //Remove from cart
             break;
         case 4:
-            cart.print_total();// Total cost
+            cart.enlist(); //Enlist total
             break;
         case 5:
-            cart.newCart();
+            cart.print_total();// Total cost
             break;
         case 6:
+            cart.newCart();
+            break;
+        case 7:
             system.stopExec(); // exit
             break;
         default:

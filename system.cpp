@@ -24,10 +24,12 @@ std::string System::storeName() const { return "Store: " + name; }
 
 User System::logIn() {
     UI interface;
-    User usr;
-    while (not interface.logIn(usr)) {}
-    interface.init_workspace(usr);
-    return usr;
+    User *usr;
+    while ((usr = interface.logIn()) == nullptr) {}
+    interface.init_workspace(*usr);
+    User usrn = User(*usr);
+    delete usr;
+    return usrn;
 }
 
 void System::addUser() {
@@ -43,11 +45,11 @@ void System::addUser() {
     std::string userRights;
     std::cin >> userRights;
     std::transform(userRights.begin(), userRights.end(), userRights.begin(), ::tolower); //converting to lower-case
-    if (userRights != "operator" && userRights != "admin") {
+    int times = 1;
+    if (userRights != "operator" && userRights != "admin" && times++ < 3) {
         ui.alert("<!> wrong type\nTry again: ");
         std::cin >> userRights;
         std::transform(userRights.begin(), userRights.end(), userRights.begin(), ::tolower); //converting to lower-case
-        return;
     }
     User usr(name);
     if (userRights == "operator")
@@ -58,7 +60,7 @@ void System::addUser() {
     loginController.add(usr, password);
 }
 
-void System::start(User user) { // a function that keeps'dat'll up'n'runnin'
+void System::start(User user) { // a function that keeps 'dat all up'n'runnin'
     UI ui;
     User usr;
     Warehouse warehouse;
@@ -72,8 +74,6 @@ void System::start(User user) { // a function that keeps'dat'll up'n'runnin'
     
     
     std::unique_ptr<User> usrPtr(user.identify());
-    std::cout << "\n" << usrPtr->getInfo();
-    
     startExec();
     bool exec_result;
     while (exec_flag) {

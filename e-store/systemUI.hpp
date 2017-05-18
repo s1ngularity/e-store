@@ -15,7 +15,7 @@
 class UI {
 public:
     void print_prompt(std::string text);
-    bool logIn(User &usr);
+    User *logIn();
     void init_workspace(const User& usr);
     int prompt(std::string) const;
     void alert(std::string) const;

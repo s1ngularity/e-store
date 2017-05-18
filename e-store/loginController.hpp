@@ -15,7 +15,7 @@
 
 class LoginController {
 public:
-    bool get(User &usr); // to be re-written
+    User *get(); // to be re-written
     void add(const User &usr, std::string password); // adding user.
     void del(std::string name);
 };

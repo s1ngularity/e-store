@@ -41,8 +41,10 @@ public:
 // -------- ADMIN: --------
 class Admin : public User {
 private:
-    std::string instructions = "You have highest access level\n"
-    "Here's what you can do: \nAdd & Edit & Delete products, prices & discounts\n";
+    std::string instructions = "--- e-Store system prototype: --------------------\n\n"
+      "Welcome to Admin's Control Panel beta\nYou have the highest access level\n"
+      "Here's what you can do: \nAdd & Delete products, Add users,\n Add & Delete discounts\n"
+      "---------------------------------------------------\n\n";
 
     static std::vector<std::string> command_list;
 public:
@@ -61,7 +63,11 @@ public:
 class Operator : public User {
 private:
     static std::vector<std::string> command_list;
-    std::string instructions = "You can add & delete products in someone's cart.\nEnjoy.\n";
+    std::string instructions = "--- e-Store system prototype: --------------------\n\n"
+      "Welocme to Operator's Control Panel beta\n"
+      "You can add & delete products in someone's cart,\nGet total and print products in cart\n"
+      "Good luck.\n"
+      "---------------------------------------------------\n\n";
 public:
     Operator(const User &usr) {
         this->setName(usr.getName());

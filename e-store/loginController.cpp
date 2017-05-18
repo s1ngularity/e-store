@@ -28,7 +28,9 @@ void LoginController::del(std::string name) {
     
 }
 
-bool LoginController::get(User &usr) {
+User *LoginController::get() {
+    User *usrptr;
+    usrptr = new User;
     Parser parser;
     parser.setSepChar(' ');
     
@@ -72,6 +74,6 @@ bool LoginController::get(User &usr) {
     }
     infile.close();
     
-    if (match) { usr.setName(name); usr.setAccessLvl(access_lvl); return true; }
-    return false;
+    if (match) { usrptr->setName(name); usrptr->setAccessLvl(access_lvl); return usrptr; }
+    return nullptr;
 }

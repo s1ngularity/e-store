@@ -51,17 +51,18 @@ void UI::init_workspace(const User& usr) {
     std::cout << usr.getName() << "\n";
 }
 
-bool UI::logIn (User &usr) {
+User *UI::logIn () {
     LoginController login;
+    User *usr;
     std::cout << "Log-In sequence initialized...\n";
     std::cout << "Enter your login: ";
-    if (login.get(usr)) {
+    if ((usr = login.get()) != nullptr) {
         std::cout << "\nLogin complete...\n";
-        return true;
+        return usr;
     }
     else {
-        std::cout << "\n<!> Login procedure failure:\n no such login.\n Try again.\n\n\n\n";
-        return false;
+        std::cout << "\n<!> Login procedure failure:\n no such account.\n Try again.\n\n\n\n";
+        return usr;
     }
 }
 
