@@ -10,6 +10,7 @@
 #define fileHandler_hpp
 
 #include <iostream>
+#include <vector>
 
 class FileHandler {
     std::string filename = "none";
@@ -18,6 +19,7 @@ public:
     FileHandler(std::string file) : filename(file) {}
     void appendToFile(std::string line);
     void setDestFile(std::string file);
+    std::vector<std::string> getLines();
 };
 
 

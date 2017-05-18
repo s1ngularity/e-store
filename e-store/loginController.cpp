@@ -29,28 +29,33 @@ void LoginController::del(std::string name) {
 }
 
 User *LoginController::get() {
+    UI ui;
     User *usrptr;
     usrptr = new User;
     Parser parser;
     parser.setSepChar(' ');
+    FileHandler fh;
+    fh.setDestFile(filename);
+    
     
     std::string name;
-    std::cin >> name;
-    std::cout << "password: ";
     std::string password;
-    std::cin >> password;
+    name = ui.dialogue("Enter your name: ");
+    password = ui.dialogue("\npassword: ");
+    
     
 //    std::ofstream ofile("b.txt");
 //    ofile << "AVasK 7997 admin\n";
 //    ofile << "gman 0000 operator\n";
 //    ofile.close();
     
-    std::string line;
-    std::ifstream infile(filename);
+    //std::string line;
+    //std::ifstream infile(filename);
     bool match = false;
     auto access_lvl = OPERATOR;
-    while (std::getline(infile, line)) {
+    //while (std::getline(infile, line)) {
         //        std::cout << line << " <-line \n";
+    for (std::string line : fh.getLines()) {
         std::string fname, fpass, fpost;
         fname = parser.getAttr(1, line);
         fpass = parser.getAttr(2, line);
@@ -72,7 +77,7 @@ User *LoginController::get() {
                 match = false;
         }
     }
-    infile.close();
+    //infile.close();
     
     if (match) { usrptr->setName(name); usrptr->setAccessLvl(access_lvl); return usrptr; }
     return nullptr;

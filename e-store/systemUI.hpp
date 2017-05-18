@@ -22,6 +22,7 @@ public:
     //template <typename T>
     void alert_items(std::vector<Product> vec);
     int prompt_list(std::vector<std::string> vec);
+    std::string dialogue(std::string);
 };
 
 

@@ -55,9 +55,8 @@ User *UI::logIn () {
     LoginController login;
     User *usr;
     std::cout << "Log-In sequence initialized...\n";
-    std::cout << "Enter your login: ";
     if ((usr = login.get()) != nullptr) {
-        std::cout << "\nLogin complete...\n";
+        std::cout << "\nLogin procedure status: complete.\n";
         return usr;
     }
     else {
@@ -66,5 +65,11 @@ User *UI::logIn () {
     }
 }
 
+std::string UI::dialogue(std::string msg) {
+    alert(msg + "\n");
+    std::string ans;
+    std::cin >> ans;
+    return ans;
+}
 
 

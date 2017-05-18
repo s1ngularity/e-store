@@ -7,8 +7,9 @@
 //
 
 #include "fileHandler.hpp"
+#include <iostream>
 #include <fstream>
-
+#include <string>
 
 void FileHandler::setDestFile(std::string file) {
     filename = file;
@@ -22,4 +23,14 @@ void FileHandler::appendToFile(std::string line) {
     ofile.open(this->filename, std::ios_base::app);
     ofile << line;
     ofile.close();
+}
+
+std::vector<std::string> FileHandler::getLines() {
+    std::ifstream infile(filename);
+    std::vector<std::string> lines;
+    std::string line;
+    while (std::getline(infile, line)) {
+        lines.push_back(line);
+    }
+    return lines;
 }
