@@ -23,6 +23,8 @@ public:
     void alert_items(std::vector<Product> vec);
     int prompt_list(std::vector<std::string> vec);
     std::string dialogue(std::string);
+    void print_cart(Cart);
+    void print_total(Cart);
 };
 
 

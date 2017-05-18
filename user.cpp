@@ -8,6 +8,7 @@
 
 #include "user.hpp"
 #include "system.hpp"
+#include "systemUI.hpp"
 #include "loginController.hpp"
 
 std::vector<std::string> User::command_list = {"WARNING: YOU MESSED UP WITH USER POINTER.\n" };
@@ -28,7 +29,7 @@ std::vector<std::string> Operator::command_list =
         "2) Add to cart\n",
         "3) Remove from cart\n",
         "4) Print cart\n",
-        "4) Total cost\n",
+        "5) Total cost\n",
         "6) Create new user's cart\n",
         "7) Exit\n"
     };
@@ -75,16 +76,18 @@ std::vector<std::string> Operator::getCommandList() const {
 }
 
 bool User::execute(int cmd, Cart& cart, Warehouse& warehouse) {
-    std::cout << "\nYOU. MESSED. UP. WITH. UsrPointer [!!!]\n";
+    UI ui;
+    ui.alert("\nYOU. MESSED. UP. WITH. UsrPointer [!!!]\n");
     return false;
 }
 
 bool Admin::execute(int cmd, Cart& cart, Warehouse& warehouse) {
+    UI ui;
     bool result = true;
     System system("decision core");
     switch(cmd) {
         case 1:
-            std::cout << getInfo(); //Get info
+            ui.alert(getInfo()); //Get info
             break;
         case 2:
             system.addUser(); // Add user
@@ -115,11 +118,12 @@ bool Admin::execute(int cmd, Cart& cart, Warehouse& warehouse) {
 }
 
 bool Operator::execute(int cmd, Cart& cart, Warehouse& warehouse) {
+    UI ui;
     System system("decision core");
     bool result = true;
     switch(cmd) {
         case 1:
-            std::cout << getInfo();
+            ui.alert(getInfo());
             break;
         case 2:
             //Add to cart

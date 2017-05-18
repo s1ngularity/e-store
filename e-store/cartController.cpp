@@ -29,22 +29,6 @@ void Cart::add_handler(const Warehouse& warehouse) {
         return;
     }
     
-//    TEST FEATURES: ( FOR FUTURE WORK <!> )
-//    ui.alert("1) Show all items availible on the warehouse\n");
-//    int ans = ui.prompt("2) Search by name\n");
-//    switch(ans) {
-//        case 1:
-//            std::cout << "Items:\n";
-//            ui.alert_items(warehouse.getItems());
-//            items.push_back(warehouse[ui.prompt("Item number:\b\n") - 1]);
-//            break;
-//        case 2:
-//            
-//            break;
-//        default:
-//            std::cout << "Wrong way\n";
-//            
-//    }
     
     std::cout << "Items:\n";
     ui.alert_items(warehouse.getItems());
@@ -87,13 +71,7 @@ void Cart::enlist() {
         ui.alert(CART_NOT_CREATED_ERR);
         return;
     }
-    ui.alert("\n-------------CART:------------\n");
-    for (auto prod : this->items) {
-        std::cout << prod.getName() << " : " << prod.getPrice() << "\n";
-    }
-    ui.alert("\n--PRICE:--------\n");
-    ui.alert(std::to_string(this->total()) + "\n");
-    ui.alert("------------------------------\n");
+    ui.print_cart(*this);
 }
 
 void Cart::print_total() {
@@ -102,9 +80,7 @@ void Cart::print_total() {
         ui.alert(CART_NOT_CREATED_ERR);
         return;
     }
-    ui.alert("\n--PRICE:--------\n");
-    ui.alert(std::to_string(this->total()) + "\n");
-    ui.alert("----------------\n");
+    ui.print_total(*this);
 }
 
 double Cart::total() {

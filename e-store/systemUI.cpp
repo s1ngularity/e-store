@@ -72,4 +72,21 @@ std::string UI::dialogue(std::string msg) {
     return ans;
 }
 
+void UI::print_total(Cart cart) {
+    alert("\n-------------CART:------------\n");
+    for (auto prod : cart.getItems()) {
+        std::cout << prod.getName() << " : " << prod.getPrice() << "\n";
+    }
+    alert("\n--PRICE:--------\n");
+    alert(std::to_string(cart.total()) + "\n");
+    alert("------------------------------\n");
+}
+
+void UI::print_cart(Cart cart) {
+    alert("\n----CURRENTLY in CART:--------\n");
+    for (auto prod : cart.getItems()) {
+        std::cout << prod.getName() << " : " << prod.getPrice() << "\n";
+    }
+}
+
 
