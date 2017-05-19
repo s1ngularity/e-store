@@ -22,6 +22,9 @@ std::string Parser::getAttr(int n, std::string line) { // ADD: throw exception
             parsed += line[i];
         }
     }
+    if (n > 0) {
+        throw ParseException("not enough parameters");
+    }
     return parsed;
 }
 

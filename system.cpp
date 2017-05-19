@@ -18,6 +18,9 @@
 #include "product.hpp"
 #include "warehouse.hpp"
 #include "loginController.hpp"
+#include "filehandler.hpp"
+#include "parser.hpp"
+#include <cstdlib>
 
 bool System::exec_flag = true;
 std::string System::storeName() const { return "Store: " + name; }
@@ -67,11 +70,40 @@ void System::start(User user) { // a function that keeps 'dat all up'n'runnin'
     std::vector<Cart> store;
     Cart currentCart;
     
+    
+    FileHandler fh;
+    Parser fParser;
+    fParser.setSepChar('|');
+    std::string storefile = "store.txt";
+    
     warehouse.add(Product("ffxv", "games", 100.99));
     warehouse.add(Product("nier", "games", 99.99));
     warehouse.add(Product("Tali Zorah figure (ME series)", "figures", 200));
     warehouse.add(Product("Nier:automata digital edition", "c-games", 120));
-    
+    if (fh.fileExists(storefile)) {
+        fh.setDestFile(storefile);
+        auto lines = fh.getLines();
+        if (lines.size() == 0) {
+            ui.alert("<!> Store is empty. Contact the admin to fill it with products.\n");
+        }
+        for (auto line : lines) {
+            try {
+                std::string name = fParser.getAttr(1, line);
+                std::string category = fParser.getAttr(2, line);
+                int price = atoi(fParser.getAttr(2, line).c_str());
+                Product product = Product(name, category, price);
+                warehouse.add(product);
+            }
+            catch(ParseException exc) {
+                ui.alert(exc.what());
+            }
+        }
+    }
+    else {
+        fh.setDestFile(storefile);
+        fh.appendToFile("");
+        ui.alert("<!> Store is empty or the file is corrupted. Contact the admin to fill it with products.\n");
+    }
     
     std::unique_ptr<User> usrPtr(user.identify());
     startExec();

@@ -18,4 +18,13 @@ public:
     void setSepChar(char);
 };
 
+class ParseException {
+    std::string about;
+public:
+    ParseException() : about("untitled exception") {}
+    ParseException(std::string t_name) : about(t_name) {}
+    std::string what() { return about; }
+    
+};
+
 #endif /* parser_hpp */

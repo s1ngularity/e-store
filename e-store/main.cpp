@@ -13,11 +13,11 @@
 
 
 int main(int argc, const char * argv[]) {
-
-    System store("shop name");
+    UI ui;
+    System store("e-Store 1");
     User user;
         
-    std::cout << store.storeName() << "\n";
+    ui.alert("Welcome to " + store.storeName() + "\n");
     user = store.logIn(); // this handles all logging-in processes
     store.start(user); // and this makes store operational (locked & loaded. For we are in a gun store, son).
         
