@@ -63,6 +63,19 @@ void System::addUser() {
     loginController.add(usr, password);
 }
 
+/*
+void System::saveBase(std::string storefile, const Warehouse &warehouse, const User &usr) {
+    UI ui;
+    FileHandler fh;
+    Parser fParser;
+    fParser.setSepChar('|');
+    
+    fh.setDestFile(storefile);
+    fh.rewriteFile(warehouse[0].getName + "|" + warehouse[0].getCategory);
+    // TO END...
+}
+*/
+
 void System::loadBase(std::string storefile, Warehouse &warehouse, const User &usr) {
     UI ui;
     FileHandler fh;
@@ -121,8 +134,9 @@ void System::start(User user) { // a function that keeps 'dat all up'n'runnin'
     //warehouse.add(Product("Tali Zorah figure (ME series)", "figures", 200));
     //warehouse.add(Product("Nier:automata digital edition", "c-games", 120));
     
-    fh.setDestFile(storefile);
-    fh.rewriteFile("GTA VI|games|100|2\nnier automata|games|120|3\n");
+    //fh.setDestFile(storefile);
+    //fh.rewriteFile("GTA VI|games|100|2\nnier automata|games|120|3\n");
+    
     loadBase(storefile, warehouse, usr);
     warehouse[0].decQuantity();
     ui.alert(warehouse[0].about() + "\n");

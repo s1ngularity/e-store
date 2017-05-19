@@ -64,18 +64,23 @@ void Cart::remove_handler(Warehouse &warehouse) {
     ui.print_removeMenu(*this);
     int e_id = ui.prompt("Choose product number to delete:\n");
     if ((e_id > 0) && (e_id <= items.size())) {
-        std::cout << ">>> " << items[e_id - 1].getName();
+        //std::cout << ">>> " << items[e_id - 1].getName();
+        bool inWarehouse = false;
         for (Product &item : warehouse.getItems()) {
             if (item == items[e_id - 1]) {
                 item++;
+                inWarehouse = true;
+                break;
             }
+        }
+        if (!inWarehouse) {
+            warehouse.add(items[e_id - 1]);
         }
         remove(e_id);
     }
     else {
         ui.alert("<!> Wrong product number - no such product\n");
     }
-
 }
 
 void Cart::enlist() {
