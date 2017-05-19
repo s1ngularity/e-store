@@ -63,24 +63,12 @@ void System::addUser() {
     loginController.add(usr, password);
 }
 
-void System::start(User user) { // a function that keeps 'dat all up'n'runnin'
+void System::loadBase(std::string storefile, Warehouse &warehouse, const User &usr) {
     UI ui;
-    User usr;
-    Warehouse warehouse;
-    std::vector<Cart> store;
-    Cart currentCart;
-    
-    
     FileHandler fh;
     Parser fParser;
     fParser.setSepChar('|');
-    std::string storefile = "store.txt";
-    
-    //warehouse.add(Product("ffxv", "games", 100.99));
-    //warehouse.add(Product("nier", "games", 99.99));
-    //warehouse.add(Product("Tali Zorah figure (ME series)", "figures", 200));
-    //warehouse.add(Product("Nier:automata digital edition", "c-games", 120));
-    
+
     if (fh.fileExists(storefile)) {
         fh.setDestFile(storefile);
         auto lines = fh.getLines();
@@ -99,7 +87,7 @@ void System::start(User user) { // a function that keeps 'dat all up'n'runnin'
                 double price = atof(fParser.getAttr(3, line).c_str());
                 int quantity = atoi(fParser.getAttr(4, line).c_str());
                 ui.alert(name + category + std::to_string(price) + std::to_string(quantity));
-                Product product = Product(name, category, price);
+                Product product = Product(name, category, price, quantity);
                 warehouse.add(product);
             }
             catch(ParseException exc) {
@@ -113,6 +101,31 @@ void System::start(User user) { // a function that keeps 'dat all up'n'runnin'
         fh.appendToFile("");
         ui.alert("<!> Store is empty or the file is corrupted. Contact the admin to fill it with products.\n");
     }
+}
+
+void System::start(User user) { // a function that keeps 'dat all up'n'runnin'
+    UI ui;
+    User usr;
+    Warehouse warehouse;
+    std::vector<Cart> store;
+    Cart currentCart;
+    
+    
+    FileHandler fh;
+    Parser fParser;
+    fParser.setSepChar('|');
+    std::string storefile = "store.txt";
+    
+    //warehouse.add(Product("ffxv", "games", 100.99));
+    //warehouse.add(Product("nier", "games", 99.99));
+    //warehouse.add(Product("Tali Zorah figure (ME series)", "figures", 200));
+    //warehouse.add(Product("Nier:automata digital edition", "c-games", 120));
+    
+    fh.setDestFile(storefile);
+    fh.rewriteFile("GTA VI|games|100|2\nnier automata|games|120|3\n");
+    loadBase(storefile, warehouse, usr);
+    warehouse[0].decQuantity();
+    ui.alert(warehouse[0].about() + "\n");
     
     std::unique_ptr<User> usrPtr(user.identify());
     startExec();

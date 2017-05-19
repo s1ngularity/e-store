@@ -26,7 +26,7 @@ public:
     int getId() { return id; }
     void setId(int t_id) { id = t_id; }
     void setUserName(std::string t_userName) { userName = t_userName; }
-    void add_handler(const Warehouse &);
+    void add_handler(Warehouse &);
     //void add(Product);
     void remove_handler();
     //void remove(Product);

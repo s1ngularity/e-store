@@ -8,7 +8,18 @@
 
 #include "product.hpp"
 
-Product::Product(std::string t_name, std::string t_category, double t_price) : name(t_name), category(t_category), price(t_price) {
+std::string Product::about() {
+    return name + " | " + category + " | " + std::to_string(price) + " < " + std::to_string(quantity) + " left in stock >";
+}
+
+bool Product::inStock() {
+    if (quantity > 0) {
+        return true;
+    }
+    return false;
+}
+
+Product::Product(std::string t_name, std::string t_category, double t_price, int t_quantity) : name(t_name), category(t_category), price(t_price), quantity(t_quantity) {
     int key1 = 0;
     for (auto x : t_name) {
         key1 += (int(x) - int('a'));

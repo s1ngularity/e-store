@@ -22,7 +22,7 @@ void Cart::remove(int index) {
 }
 
 
-void Cart::add_handler(const Warehouse& warehouse) {
+void Cart::add_handler(Warehouse& warehouse) {
     UI ui;
     if (this->getId() == -1) {
         ui.alert(CART_NOT_CREATED_ERR);
@@ -34,7 +34,13 @@ void Cart::add_handler(const Warehouse& warehouse) {
     ui.alert_items(warehouse.getItems());
     int e_id = ui.prompt("Item number:\b\n");
     if ((e_id > 0) && (e_id <= warehouse.getItems().size())) {
+        if (warehouse[e_id - 1].inStock()) {
         items.push_back(warehouse[e_id - 1]);
+        warehouse[e_id - 1]--;
+        }
+        else {
+            ui.alert("Sorry, the chosen item is out of stock...\n");
+        }
     }
     else {
         ui.alert("<!> Wrong product number - no such product\n");

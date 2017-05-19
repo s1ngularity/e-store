@@ -24,6 +24,7 @@ public:
     void startExec() { exec_flag = true; }
     void stopExec() { exec_flag = false; }
     void addUser();
+    void loadBase(std::string, Warehouse &, const User &);
 };
 
 #endif /* system_hpp */

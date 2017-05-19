@@ -12,7 +12,7 @@ void Warehouse::add(Product p) {
     products.push_back(p);
 }
 
-const std::vector<Product>& Warehouse::getItems() const {
+std::vector<Product>& Warehouse::getItems() {
     return products;
 }
 
