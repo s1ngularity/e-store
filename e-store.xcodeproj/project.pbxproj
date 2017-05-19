@@ -32,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B6254851ECF75C800033AF7 /* files.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = files.hpp; sourceTree = "<group>"; };
 		0B8B40E01EB749B000C3650D /* product.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = product.cpp; sourceTree = "<group>"; };
 		0B8B40E11EB749B000C3650D /* product.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = product.hpp; sourceTree = "<group>"; };
 		0B8B40E31EC8CF3900C3650D /* parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parser.cpp; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 		0BC0ABC81EAA9F7C0031DD9A /* include */ = {
 			isa = PBXGroup;
 			children = (
+				0B6254851ECF75C800033AF7 /* files.hpp */,
 				0BC0ABCC1EAA9FE30031DD9A /* model */,
 				0BC0ABCA1EAA9FA50031DD9A /* interface */,
 				0BC0ABCB1EAA9FAB0031DD9A /* controller */,

@@ -76,26 +76,35 @@ void System::start(User user) { // a function that keeps 'dat all up'n'runnin'
     fParser.setSepChar('|');
     std::string storefile = "store.txt";
     
-    warehouse.add(Product("ffxv", "games", 100.99));
-    warehouse.add(Product("nier", "games", 99.99));
-    warehouse.add(Product("Tali Zorah figure (ME series)", "figures", 200));
-    warehouse.add(Product("Nier:automata digital edition", "c-games", 120));
+    //warehouse.add(Product("ffxv", "games", 100.99));
+    //warehouse.add(Product("nier", "games", 99.99));
+    //warehouse.add(Product("Tali Zorah figure (ME series)", "figures", 200));
+    //warehouse.add(Product("Nier:automata digital edition", "c-games", 120));
+    
     if (fh.fileExists(storefile)) {
         fh.setDestFile(storefile);
         auto lines = fh.getLines();
         if (lines.size() == 0) {
-            ui.alert("<!> Store is empty. Contact the admin to fill it with products.\n");
+            if (usr.getAccessLvl() == OPERATOR) {
+                ui.alert("<!> Store is empty. Contact any admin to fill it with products.\n");
+            }
+            if (usr.getAccessLvl() == ADMIN) {
+                ui.alert("<!> Store is empty. Add new products.\n");
+            }
         }
         for (auto line : lines) {
             try {
                 std::string name = fParser.getAttr(1, line);
                 std::string category = fParser.getAttr(2, line);
-                int price = atoi(fParser.getAttr(2, line).c_str());
+                double price = atof(fParser.getAttr(3, line).c_str());
+                int quantity = atoi(fParser.getAttr(4, line).c_str());
+                ui.alert(name + category + std::to_string(price) + std::to_string(quantity));
                 Product product = Product(name, category, price);
                 warehouse.add(product);
             }
             catch(ParseException exc) {
-                ui.alert(exc.what());
+                ui.alert("DEBUG:: Error occured while importing products from DB: " + exc.what());
+                ui.alert("\n<!> Part of the DataBase seems to be corrupted.\nYou can leave a note in the error log.\n");
             }
         }
     }
