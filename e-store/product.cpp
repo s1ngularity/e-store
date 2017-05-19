@@ -8,7 +8,7 @@
 
 #include "product.hpp"
 
-std::string Product::about() {
+std::string Product::about() const {
     return name + " | " + category + " | " + std::to_string(price) + " < " + std::to_string(quantity) + " left in stock >";
 }
 
@@ -27,5 +27,12 @@ Product::Product(std::string t_name, std::string t_category, double t_price, int
     
     //std::cout << "id is: " << key1 << "\n";
     id = key1;
+}
+
+bool Product::operator==(const Product &rhs) {
+    if (this->getName() == rhs.getName() && this->getPrice() == rhs.getPrice() && this->getCategory() == rhs.getCategory()) {
+        return true;
+    }
+    return false;
 }
 

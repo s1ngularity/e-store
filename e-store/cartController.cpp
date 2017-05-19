@@ -48,7 +48,7 @@ void Cart::add_handler(Warehouse& warehouse) {
     
 }
 
-void Cart::remove_handler() {
+void Cart::remove_handler(Warehouse &warehouse) {
     UI ui;
     if (this->getId() == -1) {
         ui.alert(CART_NOT_CREATED_ERR);
@@ -59,10 +59,17 @@ void Cart::remove_handler() {
         return;
     }
     
-    ui.alert("\nItems in the cart:\n");
-    ui.alert_items(this->getItems());
+    //ui.alert("\nItems in the cart:\n");
+    //ui.alert_items(this->getItems());
+    ui.print_removeMenu(*this);
     int e_id = ui.prompt("Choose product number to delete:\n");
     if ((e_id > 0) && (e_id <= items.size())) {
+        std::cout << ">>> " << items[e_id - 1].getName();
+        for (Product &item : warehouse.getItems()) {
+            if (item == items[e_id - 1]) {
+                item++;
+            }
+        }
         remove(e_id);
     }
     else {

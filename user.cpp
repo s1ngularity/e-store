@@ -130,7 +130,7 @@ bool Operator::execute(int cmd, Cart& cart, Warehouse& warehouse) {
             cart.add_handler(warehouse);
             break;
         case 3:
-            cart.remove_handler(); //Remove from cart
+            cart.remove_handler(warehouse); //Remove from cart
             break;
         case 4:
             cart.enlist(); //Enlist total

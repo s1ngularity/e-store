@@ -25,6 +25,7 @@ public:
     std::string dialogue(std::string);
     void print_cart(Cart);
     void print_total(Cart);
+    void print_removeMenu(Cart);
 };
 
 

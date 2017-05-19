@@ -28,7 +28,7 @@ public:
     void setUserName(std::string t_userName) { userName = t_userName; }
     void add_handler(Warehouse &);
     //void add(Product);
-    void remove_handler();
+    void remove_handler(Warehouse &);
     //void remove(Product);
     void enlist();
     void print_total();

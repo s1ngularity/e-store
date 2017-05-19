@@ -29,7 +29,6 @@ void UI::alert_items(std::vector<Product> vec) {
     for (auto iter = vec.begin(); iter != vec.end(); iter++) {
         alert(std::to_string(i++) + ") " + iter->about() + "\n");
     }
-
 }
 
 int UI::prompt_list(std::vector<std::string> vec) {
@@ -87,6 +86,14 @@ void UI::print_cart(Cart cart) {
     for (auto prod : cart.getItems()) {
         std::cout << prod.getName() << " : " << prod.getPrice() << "\n";
     }
+}
+
+void UI::print_removeMenu(Cart cart) {
+    int i = 1;
+    for (auto prod : cart.getItems()) {
+        std::cout << i++ << ") " << prod.getName() << " : " << prod.getPrice() << "\n";
+    }
+    
 }
 
 

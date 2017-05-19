@@ -24,14 +24,17 @@ public:
     Product(std::string t_name, std::string t_category, double t_price, int t_quantity); // without id
     Product(std::string t_name, std::string t_category, double t_price, int t_quantity, int t_id) : name(t_name), category(t_category), price(t_price), quantity(t_quantity), id(t_id) {} // constructing product with set id.
     
-    int getPrice() { return price; }
-    int getId() { return id; }
-    std::string getName() { return name; }
-    std::string getCategory() { return category; }
-    std::string about();
+    int getPrice() const { return price; }
+    int getId() const { return id; }
+    std::string getName() const { return name; }
+    std::string getCategory() const { return category; }
+    std::string about() const;
     void decQuantity() { if (quantity > 0) { --quantity; } };
+    void incQuantity() { ++quantity; };
     Product operator--(int x) { this->decQuantity(); return *this; }
+    Product operator++(int x) { this->incQuantity(); return *this; }
     bool inStock();
+    bool operator==(const Product &rhs);
 };
 
 #endif /* product_hpp */
