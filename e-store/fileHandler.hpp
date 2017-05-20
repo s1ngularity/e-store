@@ -22,6 +22,7 @@ public:
     void setDestFile(std::string file);
     bool fileExists(std::string filename);
     std::vector<std::string> getLines();
+    void rewriteFile(std::vector<std::string>);
 };
 
 

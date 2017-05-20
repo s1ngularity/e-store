@@ -105,9 +105,9 @@ void System::saveBase(std::string storefile, Warehouse &warehouse) {
     
     fh.setDestFile(storefile);
     fh.rewriteFile(warehouse[0].getName() + SepChar + warehouse[0].getCategory() + SepChar + std::to_string(warehouse[0].getPrice()) + SepChar + std::to_string(warehouse[0].getQuantity()) + "\n");
-    
+    //ui.alert(">>>>!!!!" + std::to_string(warehouse.getItems().size()));
     for (int i = 1; i < warehouse.getItems().size(); i++) {
-        fh.rewriteFile(warehouse[i].getName() + SepChar + warehouse[i].getCategory() + SepChar + std::to_string(warehouse[i].getPrice()) + SepChar + std::to_string(warehouse[i].getQuantity()) + "\n");
+        fh.appendToFile(warehouse[i].getName() + SepChar + warehouse[i].getCategory() + SepChar + std::to_string(warehouse[i].getPrice()) + SepChar + std::to_string(warehouse[i].getQuantity()) + "\n");
     }
     ui.alert("DB sync...\nDone.\n");
 }
@@ -136,7 +136,7 @@ void System::loadBase(std::string storefile, Warehouse &warehouse, const User &u
                 std::string category = fParser.getAttr(2, line);
                 double price = atof(fParser.getAttr(3, line).c_str());
                 int quantity = atoi(fParser.getAttr(4, line).c_str());
-                ui.alert("<::>" + name + category + std::to_string(price) + std::to_string(quantity)); // DELETE <!>
+                //ui.alert("<::>" + name + category + std::to_string(price) + std::to_string(quantity)); // DELETE <!>
                 Product product = Product(name, category, price, quantity);
                 warehouse.add(product);
             }
@@ -166,13 +166,7 @@ void System::start(User user) { // a function that keeps 'dat all up'n'runnin'
     fParser.setSepChar('|');
     std::string storefile = "store.txt";
     
-    //warehouse.add(Product("ffxv", "games", 100.99));
-    //warehouse.add(Product("nier", "games", 99.99));
-    //warehouse.add(Product("Tali Zorah figure (ME series)", "figures", 200));
-    //warehouse.add(Product("Nier:automata digital edition", "c-games", 120));
-    
     fh.setDestFile(storefile);
-    //fh.rewriteFile("GTA VI|games|100|2\nnier automata|games|120|3\n");
     
     loadBase(storefile, warehouse, usr);
     

@@ -41,6 +41,15 @@ void FileHandler::rewriteFile(std::string line) {
     ofile.close();
 }
 
+void FileHandler::rewriteFile(std::vector<std::string> lines) {
+    std::ofstream ofile(filename);
+    for (auto line : lines) {
+        ofile << line << "\n";
+    }
+    ofile.close();
+}
+
+
 bool FileHandler::fileExists(std::string fname) {
     if (std::ifstream(fname))
     {
