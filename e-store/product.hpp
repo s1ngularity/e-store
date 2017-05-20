@@ -26,6 +26,7 @@ public:
     
     int getPrice() const { return price; }
     int getId() const { return id; }
+    int getQuantity() const { return quantity; }
     std::string getName() const { return name; }
     std::string getCategory() const { return category; }
     std::string about() const;

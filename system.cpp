@@ -63,18 +63,55 @@ void System::addUser() {
     loginController.add(usr, password);
 }
 
-/*
-void System::saveBase(std::string storefile, const Warehouse &warehouse, const User &usr) {
+
+void System::removeProd(Warehouse &warehouse) {
+    UI ui;
+    
+    ui.alert("Items:\n");
+    ui.alert_items(warehouse.getItems());
+    int e_id = ui.prompt("Product to delete:\b\n");
+    if ((e_id > 0) && (e_id <= warehouse.getItems().size())) {
+            warehouse.remove(e_id - 2);
+    }
+    else {
+        ui.alert("<!> Wrong product number - no such product\n");
+    }
+}
+
+void System::addProd(Warehouse &warehouse) {
+    UI ui;
+    std::string name = ui.dialogue("To ADD new product, enter the name: ");
+    std::string category = ui.dialogue("category: ");
+    int price = atof(ui.dialogue("price").c_str());
+    int quantity = atoi(ui.dialogue("and quantity: ").c_str());
+    
+    Product new_prod(name, category, price, quantity);
+    warehouse.add(new_prod);
+}
+
+
+
+void System::saveBase(std::string storefile, Warehouse &warehouse) {
+    char SepChar = '|';
     UI ui;
     FileHandler fh;
     Parser fParser;
-    fParser.setSepChar('|');
+    fParser.setSepChar(SepChar);
+    
+    if (warehouse.getItems().size() == 0) {
+        ui.alert("<!> It seems that the warehouse is empty...\n");
+        return;
+    }
     
     fh.setDestFile(storefile);
-    fh.rewriteFile(warehouse[0].getName + "|" + warehouse[0].getCategory);
-    // TO END...
+    fh.rewriteFile(warehouse[0].getName() + SepChar + warehouse[0].getCategory() + SepChar + std::to_string(warehouse[0].getPrice()) + SepChar + std::to_string(warehouse[0].getQuantity()) + "\n");
+    
+    for (int i = 1; i < warehouse.getItems().size(); i++) {
+        fh.rewriteFile(warehouse[i].getName() + SepChar + warehouse[i].getCategory() + SepChar + std::to_string(warehouse[i].getPrice()) + SepChar + std::to_string(warehouse[i].getQuantity()) + "\n");
+    }
+    ui.alert("DB sync...\nDone.\n");
 }
-*/
+
 
 void System::loadBase(std::string storefile, Warehouse &warehouse, const User &usr) {
     UI ui;
@@ -99,7 +136,7 @@ void System::loadBase(std::string storefile, Warehouse &warehouse, const User &u
                 std::string category = fParser.getAttr(2, line);
                 double price = atof(fParser.getAttr(3, line).c_str());
                 int quantity = atoi(fParser.getAttr(4, line).c_str());
-                ui.alert(name + category + std::to_string(price) + std::to_string(quantity));
+                ui.alert("<::>" + name + category + std::to_string(price) + std::to_string(quantity)); // DELETE <!>
                 Product product = Product(name, category, price, quantity);
                 warehouse.add(product);
             }
@@ -134,12 +171,10 @@ void System::start(User user) { // a function that keeps 'dat all up'n'runnin'
     //warehouse.add(Product("Tali Zorah figure (ME series)", "figures", 200));
     //warehouse.add(Product("Nier:automata digital edition", "c-games", 120));
     
-    //fh.setDestFile(storefile);
+    fh.setDestFile(storefile);
     //fh.rewriteFile("GTA VI|games|100|2\nnier automata|games|120|3\n");
     
     loadBase(storefile, warehouse, usr);
-    warehouse[0].decQuantity();
-    ui.alert(warehouse[0].about() + "\n");
     
     std::unique_ptr<User> usrPtr(user.identify());
     startExec();
@@ -156,7 +191,9 @@ void System::start(User user) { // a function that keeps 'dat all up'n'runnin'
         //ui.alert(std::to_string(x));
         exec_result = usrPtr->execute(command, currentCart, warehouse);
     }
-    
-    
+    for (auto item : warehouse.getItems()) {
+        ui.alert(item.getName() + " : " + std::to_string(item.getQuantity()) + "\n");
+    }
+    saveBase(storefile, warehouse);
     
 }

@@ -93,10 +93,10 @@ bool Admin::execute(int cmd, Cart& cart, Warehouse& warehouse) {
             system.addUser(); // Add user
             break;
         case 3:
-            //Add product
+            system.addProd(warehouse); //Add product
             break;
         case 4:
-            //Remove product
+            system.removeProd(warehouse); //Remove product
             //warehouse.remove(ui.prompt("Choose product to delete\n"));
             break;
         case 5:
