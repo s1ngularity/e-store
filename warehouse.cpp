@@ -7,6 +7,7 @@
 //
 
 #include "warehouse.hpp"
+#include <exception>
 
 void Warehouse::add(Product p) {
     products.push_back(p);
@@ -17,5 +18,10 @@ std::vector<Product>& Warehouse::getItems() {
 }
 
 void Warehouse::remove(int index) {
-    products.erase(products.begin() + index + 1);
+    if (products.size() == 0) {
+        std::cerr << "Empty array";
+        return;
+    }
+    products.erase(products.begin() + index - 1);
 }
+

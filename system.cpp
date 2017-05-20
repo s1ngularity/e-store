@@ -71,7 +71,7 @@ void System::removeProd(Warehouse &warehouse) {
     ui.alert_items(warehouse.getItems());
     int e_id = ui.prompt("Product to delete:\b\n");
     if ((e_id > 0) && (e_id <= warehouse.getItems().size())) {
-            warehouse.remove(e_id - 2);
+            warehouse.remove(e_id);
     }
     else {
         ui.alert("<!> Wrong product number - no such product\n");
